@@ -1,7 +1,6 @@
 ﻿using Application.Restaurants;
-using Domain.Entities;
+using Application.Restaurants.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.ObjectModel;
 
 namespace API.Controllers;
 
@@ -15,4 +14,28 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
         var restaurants = await restaurantsService.GetAllRestaurants();
         return Ok(restaurants);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var restaurant = await restaurantsService.GetRestaurantById(id);
+        if (restaurant == null)
+        {
+            return NotFound();
+        }
+        return Ok(restaurant);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantDto CreateRestaurantDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        var restaurant = await restaurantsService.CreateRestaurant(CreateRestaurantDto);
+        return CreatedAtAction(nameof(GetById), new { id = restaurant.Id }, restaurant);
+    }
+
+
 }

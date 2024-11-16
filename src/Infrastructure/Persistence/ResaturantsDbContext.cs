@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
 
-public class ResaturantsDbContext : DbContext
+internal class ResaturantsDbContext : DbContext
 {
     public ResaturantsDbContext(DbContextOptions<ResaturantsDbContext> options) : base(options)
     {
