@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Restaurants.Queries.GetAllRestaurants;
 
-public class GetAllResaturantsQueryHandler(
+public class GetAllRestaurantsQueryHandler(
     IRestaurantsRepository restaurantsRepository,
-    ILogger<GetAllResaturantsQueryHandler> logger) : IRequestHandler<GetAllResaturantsQuery, IEnumerable<RestaurantDto>>
+    ILogger<GetAllRestaurantsQueryHandler> logger) : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantDto>>
 {
-    public async Task<IEnumerable<RestaurantDto>> Handle(GetAllResaturantsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all restaurants");
         var restaurants = await restaurantsRepository.GetAllAsync();

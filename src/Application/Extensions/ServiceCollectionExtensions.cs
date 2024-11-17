@@ -1,11 +1,8 @@
-﻿using Application.Restaurants;
-using Application.Restaurants.Commands.CreateRestaurantCommand;
-using Application.Restaurants.Dtos;
+﻿using Application.Restaurants.Commands.CreateRestaurantCommand;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
-namespace Application.Extendions;
+namespace Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {

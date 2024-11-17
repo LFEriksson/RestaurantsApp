@@ -1,6 +1,6 @@
 using Infrastructure.Extensions;
 using Infrastructure.Seeders;
-using Application.Extendions;
+using Application.Extensions;
 using FluentValidation;
 using Application.Restaurants.Commands.CreateRestaurantCommand;
 using Serilog;

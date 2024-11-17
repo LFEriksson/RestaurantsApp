@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Application.Restaurants.Queries.GetAllRestaurants;
 
-public class GetAllResaturantsQuery : IRequest<IEnumerable<RestaurantDto>>
+public class GetAllRestaurantsQuery : IRequest<IEnumerable<RestaurantDto>>
 {
 }
