@@ -1,7 +1,10 @@
-﻿using Domain.Entities;
+﻿using Application.Restaurants.Commands.CreateRestaurantCommand;
+using Application.Restaurants.Commands.UpdateRestaurant;
+using Application.Restaurants.Dtos;
+using Domain.Entities;
 using Riok.Mapperly.Abstractions;
 
-namespace Application.Restaurants.Dtos;
+namespace Application.Restaurants;
 
 [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
 public partial class RestaurantMapper
@@ -16,5 +19,6 @@ public partial class RestaurantMapper
     [MapProperty(nameof(RestaurantDto.StreetAddress), nameof(Restaurant.Address.Streetaddress))]
     [MapProperty(nameof(RestaurantDto.City), nameof(Restaurant.Address.City))]
     [MapProperty(nameof(RestaurantDto.ZipCode), nameof(Restaurant.Address.ZipCode))]
-    public partial Restaurant CreateRestaurantDtoToRestaurant(CreateRestaurantDto dto);
+    public partial Restaurant CreateRestaurantCommandToRestaurant(CreateRestaurantCommand commandEntity);
+
 }

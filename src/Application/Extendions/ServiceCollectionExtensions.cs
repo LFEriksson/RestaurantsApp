@@ -1,6 +1,6 @@
 ﻿using Application.Restaurants;
+using Application.Restaurants.Commands.CreateRestaurantCommand;
 using Application.Restaurants.Dtos;
-using Application.Restaurants.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -13,12 +13,8 @@ public static class ServiceCollectionExtensions
     {
         var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
-        services.AddScoped<IRestaurantsService, RestaurantsService>();
+        services.AddScoped<IValidator<CreateRestaurantCommand>, CreateRestaurantCommandValidator>();
 
-        services.AddScoped<IValidator<CreateRestaurantDto>, CreateRestaurantDtoValidator>();
-
-        //services.AddValidatorsFromAssemblyContaining(typeof(CreateRestaurantDtoValidator));
-        //services.AddValidatorsFromAssembly(applicationAssembly);
-
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
     }
 }
