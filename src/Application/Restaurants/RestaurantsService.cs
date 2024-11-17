@@ -1,16 +1,26 @@
 ﻿using Application.Restaurants.Dtos;
 using Domain.Entities;
 using Domain.Repositories;
+using FluentValidation;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Restaurants;
 
-internal class RestaurantsService(IRestaurantsRepository restaurantsRepository,
+internal class RestaurantsService(
+    IRestaurantsRepository restaurantsRepository,
+    IValidator<CreateRestaurantDto> validator,
     ILogger<RestaurantsService> logger) : IRestaurantsService
 {
     public async Task<RestaurantDto> CreateRestaurant(CreateRestaurantDto createRestaurantDto)
     {
+
         logger.LogInformation("Creating restaurant");
+        var validationResult = await validator.ValidateAsync(createRestaurantDto);
+        if (!validationResult.IsValid)
+        {
+            logger.LogWarning("Create restaurant dto is not valid");
+            throw new ValidationException(validationResult.Errors);
+        }
         var mapper = new RestaurantMapper();
         var restaurant = mapper.CreateRestaurantDtoToRestaurant(createRestaurantDto);
         return mapper.RestaurantToRestaurantDto(await restaurantsRepository.AddAsync(restaurant));

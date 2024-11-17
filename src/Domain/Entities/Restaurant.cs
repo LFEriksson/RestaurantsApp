@@ -15,6 +15,6 @@ public class Restaurant
     public string? ContactNumber { get; set; }
 
     [Required]
-    public Adress? Address { get; set; } = new Adress();
+    public Address? Address { get; set; } = new Address();
     public ICollection<Dish?> Dishes { get; set; } = new Collection<Dish?>();
 }

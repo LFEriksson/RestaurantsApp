@@ -96,7 +96,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Restaurant", b =>
                 {
-                    b.OwnsOne("Domain.Entities.Adress", "Address", b1 =>
+                    b.OwnsOne("Domain.Entities.address", "Address", b1 =>
                         {
                             b1.Property<int>("RestaurantId")
                                 .HasColumnType("int");
@@ -105,7 +105,7 @@ namespace Infrastructure.Migrations
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<string>("StreetAdress")
+                            b1.Property<string>("Streetaddress")
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 

@@ -38,7 +38,7 @@ internal class RestaurantSeeder(ResaturantsDbContext dbContext) : IRestaurantSee
                 Address = new()
                 {
                     City = "New York",
-                    StreetAdress = "Broadway 5",
+                    Streetaddress = "Broadway 5",
                     ZipCode = "10001"
                 }
             },
@@ -57,7 +57,7 @@ internal class RestaurantSeeder(ResaturantsDbContext dbContext) : IRestaurantSee
                 Address = new()
                 {
                     City = "New York",
-                    StreetAdress = "Broadway 6",
+                    Streetaddress = "Broadway 6",
                     ZipCode = "10001"
                 }
             }

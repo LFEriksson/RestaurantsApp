@@ -27,7 +27,7 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantDto CreateRestaurantDto)
+    public async Task<IActionResult> CreateRestaurant(CreateRestaurantDto CreateRestaurantDto)
     {
         if (!ModelState.IsValid)
         {

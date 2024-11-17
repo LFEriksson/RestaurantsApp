@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
                     HasDelivery = table.Column<bool>(type: "bit", nullable: false),
                     ContactEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_StreetAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address_Streetaddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address_ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

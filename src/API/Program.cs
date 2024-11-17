@@ -1,6 +1,8 @@
 using Infrastructure.Extensions;
 using Infrastructure.Seeders;
 using Application.Extendions;
+using Application.Restaurants.Validators;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateRestaurantDtoValidator));
 
 var app = builder.Build();
 
