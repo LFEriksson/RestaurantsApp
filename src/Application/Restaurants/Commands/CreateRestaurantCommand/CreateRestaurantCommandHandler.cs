@@ -12,11 +12,11 @@ internal class CreateRestaurantCommandHandler(
 {
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating restaurant");
+        logger.LogInformation("Creating restaurant {@restaurant}", request);
         var validationResult = validator.Validate(request);
         if (!validationResult.IsValid)
         {
-            logger.LogWarning("Create restaurant dto is not valid");
+            logger.LogWarning("Create restaurant data is not valid");
             throw new ValidationException(validationResult.Errors);
         }
         var mapper = new RestaurantMapper();

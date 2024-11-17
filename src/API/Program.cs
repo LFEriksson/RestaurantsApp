@@ -3,6 +3,9 @@ using Infrastructure.Seeders;
 using Application.Extendions;
 using FluentValidation;
 using Application.Restaurants.Commands.CreateRestaurantCommand;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,9 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateRestaurantCommandValidator));
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration)
+);
 
 var app = builder.Build();
 
@@ -26,6 +32,8 @@ var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 await seeder.Seed();
 
 // Configure the HTTP request pipeline.
+
+app.UseSerilogRequestLogging();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
