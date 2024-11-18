@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-internal class RestaurantsRepository(ResaturantsDbContext dbContext) : IRestaurantsRepository
+internal class RestaurantsRepository(RestaurantsDbContext dbContext) : IRestaurantsRepository
 {
     public async Task<int> AddAsync(Restaurant restaurant)
     {

@@ -4,7 +4,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories;
 
-internal class DishesRepository(ResaturantsDbContext dbContext) : IDishesRepository
+internal class DishesRepository(RestaurantsDbContext dbContext) : IDishesRepository
 {
     public async Task<int> Create(Dish dish)
     {

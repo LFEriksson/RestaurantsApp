@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Infrastructure.Seeders;
 
-internal class RestaurantSeeder(ResaturantsDbContext dbContext) : IRestaurantSeeder
+internal class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeeder
 {
     public async Task Seed()
     {

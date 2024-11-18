@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [ApiController]
-[Route("api/v1/restaurant/{restaurantId}/dishes")]
+[Route("api/v1/restaurant/{restaurantId}/dish")]
 public class DishesController(IMediator mediator) : ControllerBase
 {
     [HttpGet]

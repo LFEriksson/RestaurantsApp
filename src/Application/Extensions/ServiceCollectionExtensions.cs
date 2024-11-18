@@ -1,5 +1,6 @@
 ﻿using Application.Dishes.Commands.CreateDish;
 using Application.Restaurants.Commands.CreateRestaurantCommand;
+using Application.User;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +14,10 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IValidator<CreateRestaurantCommand>, CreateRestaurantCommandValidator>();
         services.AddScoped<IValidator<CreateDishCommand>, CreateDishCommandValidator>();
+        services.AddScoped<IUserContext, UserContext>();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
+
+
     }
 }
