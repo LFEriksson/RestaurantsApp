@@ -13,4 +13,6 @@ public class RestaurantDto
     public string? StreetAddress { get; set; }
     public string? City { get; set; }
     public string? ZipCode { get; set; }
+
+    public IEnumerable<DishDto> Dishes { get; set; } = new Collection<DishDto>();
 }
