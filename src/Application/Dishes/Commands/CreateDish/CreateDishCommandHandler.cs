@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Exceptions;
+using Domain.Interfaces;
 using Domain.Repositories;
 using FluentValidation;
 using MediatR;
@@ -11,7 +13,8 @@ public class CreateDishCommandHandler(
     IRestaurantsRepository restaurantsRepository,
     IDishesRepository dishesRepository,
     ILogger<CreateDishCommandHandler> logger,
-    IValidator<CreateDishCommand> validator) : IRequestHandler<CreateDishCommand, int>
+    IValidator<CreateDishCommand> validator,
+    IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<CreateDishCommand, int>
 {
     public async Task<int> Handle(CreateDishCommand request, CancellationToken cancellationToken)
     {
@@ -28,6 +31,10 @@ public class CreateDishCommandHandler(
         {
             logger.LogWarning("Restaurant with id: {restaurantID} not found", request.RestaurantId);
             throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
+        }
+        if (!restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
+        {
+            throw new NotAuthorizedException();
         }
 
         var mapper = new DishMapper();

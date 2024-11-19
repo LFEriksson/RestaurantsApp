@@ -17,4 +17,7 @@ public class Restaurant
     [Required]
     public Address? Address { get; set; } = new Address();
     public ICollection<Dish?> Dishes { get; set; } = new Collection<Dish?>();
+
+    public AppUser Owner { get; set; } = default!;
+    public string OwnerId { get; set; } = default!;
 }

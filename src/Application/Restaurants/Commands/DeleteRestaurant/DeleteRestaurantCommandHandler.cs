@@ -1,7 +1,8 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Exceptions;
+using Domain.Interfaces;
 using Domain.Repositories;
-using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +10,8 @@ namespace Application.Restaurants.Commands.DeleteRestaurant;
 
 public class DeleteRestaurantCommandHandler(
     IRestaurantsRepository restaurantsRepository,
-    ILogger<DeleteRestaurantCommandHandler> logger) : IRequestHandler<DeleteRestaurantCommand>
+    ILogger<DeleteRestaurantCommandHandler> logger,
+    IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<DeleteRestaurantCommand>
 {
     public async Task Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
     {
@@ -19,6 +21,12 @@ public class DeleteRestaurantCommandHandler(
         {
             throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
         }
+
+        if (!restaurantAuthorizationService.Authorize(result, ResourceOperation.Delete))
+        {
+            throw new NotAuthorizedException();
+        }
+
         await restaurantsRepository.DeleteAsync(result);
     }
 }

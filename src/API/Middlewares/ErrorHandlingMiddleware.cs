@@ -1,8 +1,5 @@
 ﻿
 using Domain.Exceptions;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.Net;
-using System.Text.Json;
 
 namespace API.Middlewares;
 
@@ -20,6 +17,11 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             await context.Response.WriteAsync(notFound.Message);
 
             logger.LogWarning(notFound.Message);
+        }
+        catch (NotAuthorizedException)
+        {
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Access forbidden");
         }
         catch (Exception ex)
         {

@@ -8,4 +8,6 @@ public class AppUser : IdentityUser
     public string LastName { get; set; } = default!;
     public string FullName => $"{FirstName} {LastName}";
     public DateOnly DateOfBirth { get; set; }
+
+    public List<Restaurant?> OwnedRestaurants { get; set; } = new();
 }

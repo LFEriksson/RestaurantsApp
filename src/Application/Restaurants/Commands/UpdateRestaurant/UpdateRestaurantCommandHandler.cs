@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Exceptions;
+using Domain.Interfaces;
 using Domain.Repositories;
 using FluentValidation;
 using MediatR;
@@ -10,7 +12,8 @@ namespace Application.Restaurants.Commands.UpdateRestaurant;
 public class UpdateRestaurantCommandHandler(
     IRestaurantsRepository restaurantsRepository,
     IValidator<UpdateRestaurantCommand> validator,
-    ILogger<UpdateRestaurantCommandHandler> logger) : IRequestHandler<UpdateRestaurantCommand>
+    ILogger<UpdateRestaurantCommandHandler> logger,
+    IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<UpdateRestaurantCommand>
 {
     public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
@@ -24,6 +27,11 @@ public class UpdateRestaurantCommandHandler(
         if (restaurant == null)
         {
             throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
+        }
+
+        if (!restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
+        {
+            throw new NotAuthorizedException();
         }
 
         restaurant.Name = request.Name;
