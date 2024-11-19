@@ -3,6 +3,7 @@ using Application.Restaurants.Commands.CreateRestaurantCommand;
 using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -37,19 +38,16 @@ public static class WebApplicationBuilderExtensions
             });
         });
         builder.Services.AddAuthentication();
+        builder.Services.AddIdentityApiEndpoints<AppUser>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<RestaurantsDbContext>();
 
         builder.Services.AddScoped<ErrorHandlingMiddleware>();
         builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-
-        builder.Services.AddIdentityApiEndpoints<AppUser>()
-            .AddEntityFrameworkStores<RestaurantsDbContext>();
-
         builder.Services.AddHttpContextAccessor();
-
         builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateRestaurantCommandValidator));
         builder.Host.UseSerilog((context, configuration) =>
             configuration.ReadFrom.Configuration(context.Configuration)
         );
-
     }
 }

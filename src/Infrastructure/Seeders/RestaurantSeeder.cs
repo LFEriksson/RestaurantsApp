@@ -32,10 +32,9 @@ internal class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSee
     private IEnumerable<IdentityRole> GetRoles()
     {
         Collection<IdentityRole> roles = [
-            new(UserRoles.Admin),
-            new(UserRoles.Owner),
-            new(UserRoles.User)
-
+            new() { Name=UserRoles.Admin, NormalizedName=UserRoles.Admin.ToUpper()},
+            new() { Name=UserRoles.Owner, NormalizedName=UserRoles.Owner.ToUpper()},
+            new() { Name=UserRoles.User, NormalizedName=UserRoles.User.ToUpper()}
         ];
         return roles;
     }
