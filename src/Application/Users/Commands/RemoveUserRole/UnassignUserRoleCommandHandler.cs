@@ -12,7 +12,7 @@ public class UnassignUserRoleCommandHandler(
 {
     public async Task Handle(UnassignUserRoleCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Removing user role: {@Request}", request);
+        logger.LogInformation("Unassigning user role: {@Request}", request);
         var user = await userManager.FindByEmailAsync(request.UserEmail)
             ?? throw new NotFoundException(nameof(User), request.UserEmail);
 

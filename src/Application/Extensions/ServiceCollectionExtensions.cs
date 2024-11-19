@@ -12,12 +12,13 @@ public static class ServiceCollectionExtensions
     {
         var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
+
+        services.AddHttpContextAccessor();
+
         services.AddScoped<IValidator<CreateRestaurantCommand>, CreateRestaurantCommandValidator>();
         services.AddScoped<IValidator<CreateDishCommand>, CreateDishCommandValidator>();
         services.AddScoped<IUserContext, UserContext>();
-
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
-
 
     }
 }

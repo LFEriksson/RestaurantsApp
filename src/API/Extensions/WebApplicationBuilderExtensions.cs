@@ -38,13 +38,9 @@ public static class WebApplicationBuilderExtensions
             });
         });
         builder.Services.AddAuthentication();
-        builder.Services.AddIdentityApiEndpoints<AppUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<RestaurantsDbContext>();
 
         builder.Services.AddScoped<ErrorHandlingMiddleware>();
         builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-        builder.Services.AddHttpContextAccessor();
         builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateRestaurantCommandValidator));
         builder.Host.UseSerilog((context, configuration) =>
             configuration.ReadFrom.Configuration(context.Configuration)

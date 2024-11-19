@@ -4,7 +4,9 @@ using Application.Restaurants.Commands.UpdateRestaurant;
 using Application.Restaurants.Dtos;
 using Application.Restaurants.Queries.GetAllRestaurants;
 using Application.Restaurants.Queries.GetRestaurantById;
+using Infrastructure.Authorization;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -14,6 +16,7 @@ namespace API.Controllers;
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
+    [Authorize(Policy = PolicyNames.HasDateOfBirth)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]
     public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
     {
