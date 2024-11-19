@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Application.Users.Commands.AssignUserRole;
+using Application.Users.Commands.RemoveUserRole;
 
 namespace API.Controllers;
 
@@ -24,6 +25,15 @@ public class IdentityController(IMediator mediator) : ControllerBase
     [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("userRole")]
+    [Authorize(Roles = "Admin")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UnassignUserRole(AssignUserRoleCommand command)
     {
         await mediator.Send(command);
         return NoContent();
