@@ -1,4 +1,5 @@
-﻿using Application.Restaurants.Commands.CreateRestaurantCommand;
+﻿using Application.Common;
+using Application.Restaurants.Commands.CreateRestaurantCommand;
 using Application.Restaurants.Commands.DeleteRestaurant;
 using Application.Restaurants.Commands.UpdateRestaurant;
 using Application.Restaurants.Dtos;
@@ -16,11 +17,10 @@ namespace API.Controllers;
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    [Authorize(Policy = PolicyNames.HasDateOfBirth)]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedResult<RestaurantDto>))]
+    public async Task<ActionResult<PagedResult<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
     {
-        var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
+        var restaurants = await mediator.Send(query);
         return Ok(restaurants);
     }
 

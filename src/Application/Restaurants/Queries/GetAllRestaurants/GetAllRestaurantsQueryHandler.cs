@@ -2,18 +2,27 @@
 using Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Application.Common;
 
 namespace Application.Restaurants.Queries.GetAllRestaurants;
 
 public class GetAllRestaurantsQueryHandler(
     IRestaurantsRepository restaurantsRepository,
-    ILogger<GetAllRestaurantsQueryHandler> logger) : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantDto>>
+    ILogger<GetAllRestaurantsQueryHandler> logger) : IRequestHandler<GetAllRestaurantsQuery, PagedResult<RestaurantDto>>
 {
-    public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResult<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all restaurants");
-        var restaurants = await restaurantsRepository.GetAllAsync();
+        var (restaurants, totalItems) = await restaurantsRepository.GetAllMatchingAsync(
+            request.SearchPhrase,
+            request.PageNumber,
+            request.PageSize,
+            request.SortBy,
+            request.SortDirection);
         var mapper = new RestaurantMapper();
-        return restaurants.Select(restaurant => mapper.RestaurantToRestaurantDto(restaurant));
+        var restaurantsDtos = restaurants.Select(restaurant => mapper.RestaurantToRestaurantDto(restaurant));
+
+        var pagedResult = new PagedResult<RestaurantDto>(restaurantsDtos, totalItems, request.PageNumber, request.PageSize);
+        return pagedResult;
     }
 }

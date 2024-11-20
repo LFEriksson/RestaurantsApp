@@ -2,6 +2,7 @@
 using Application.Restaurants.Commands.CreateRestaurantCommand;
 using Application.User;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Extensions;
@@ -16,8 +17,8 @@ public static class ServiceCollectionExtensions
 
         services.AddHttpContextAccessor();
 
-        services.AddScoped<IValidator<CreateRestaurantCommand>, CreateRestaurantCommandValidator>();
-        services.AddScoped<IValidator<CreateDishCommand>, CreateDishCommandValidator>();
+        services.AddFluentValidationAutoValidation();
+
         services.AddScoped<IUserContext, UserContext>();
 
     }

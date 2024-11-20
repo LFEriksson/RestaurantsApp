@@ -11,18 +11,12 @@ namespace Application.Restaurants.Commands.UpdateRestaurant;
 
 public class UpdateRestaurantCommandHandler(
     IRestaurantsRepository restaurantsRepository,
-    IValidator<UpdateRestaurantCommand> validator,
     ILogger<UpdateRestaurantCommandHandler> logger,
     IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<UpdateRestaurantCommand>
 {
     public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating restaurant with id: {RestaurantId} with {@UpdatedRestaurant}", request.Id, request);
-        var validationResult = validator.Validate(request);
-        if (!validationResult.IsValid)
-        {
-            logger.LogWarning("Update restaurant data is not valid");
-        }
         var restaurant = await restaurantsRepository.GetByIdAsync(request.Id);
         if (restaurant == null)
         {

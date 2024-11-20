@@ -13,18 +13,11 @@ public class CreateDishCommandHandler(
     IRestaurantsRepository restaurantsRepository,
     IDishesRepository dishesRepository,
     ILogger<CreateDishCommandHandler> logger,
-    IValidator<CreateDishCommand> validator,
     IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<CreateDishCommand, int>
 {
     public async Task<int> Handle(CreateDishCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new dish: {@DishRequest} for restaurant with id: {restaurantID}", request, request.RestaurantId);
-        var validationResult = validator.Validate(request);
-        if (!validationResult.IsValid)
-        {
-            logger.LogWarning("Validation failed for {@DishRequest}", request);
-            throw new ValidationException(validationResult.Errors);
-        }
 
         var restaurant = await restaurantsRepository.GetByIdAsync(request.RestaurantId);
         if (restaurant is null)
