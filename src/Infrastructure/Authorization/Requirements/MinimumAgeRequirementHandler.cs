@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Authorization.Requirements;
 
-public class MinimumAgeRequirementHandler(
+internal class MinimumAgeRequirementHandler(
     ILogger<MinimumAgeRequirementHandler> logger,
     IUserContext userContext) : AuthorizationHandler<MinimumAgeRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
     {
-        var currentUser = userContext.GetCurentUser();
+        var currentUser = userContext.GetCurrentUser();
 
         logger.LogInformation("User: {Email}, date of birth {Dob} - Handling MinimumRequirement", currentUser.Email, currentUser.DateOfBirth);
 

@@ -12,7 +12,7 @@ public class RestaurantAuthorizationService(
 {
     public bool Authorize(Restaurant restaurant, ResourceOperation resourceOperation)
     {
-        var user = userContext.GetCurentUser();
+        var user = userContext.GetCurrentUser();
         logger.LogInformation("{UserName} [{UserID}] is trying to {ResourceOperation} restaurant {RestaurantName} [{RestaurantID}]", user.Email, user.UserId, resourceOperation, restaurant.Name, restaurant.Id);
 
         if (resourceOperation == ResourceOperation.Create || resourceOperation == ResourceOperation.Read)

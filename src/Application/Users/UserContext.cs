@@ -5,17 +5,17 @@ namespace Application.User;
 
 public interface IUserContext
 {
-    CurentUser GetCurentUser();
+    CurentUser GetCurrentUser();
 }
 
 public class UserContext(IHttpContextAccessor httpContextAccesor) : IUserContext
 {
-    public CurentUser GetCurentUser()
+    public CurentUser GetCurrentUser()
     {
-        var user = httpContextAccesor?.HttpContext.User;
+        var user = httpContextAccesor?.HttpContext?.User;
         if (user == null)
         {
-            throw new InvalidOperationException("User is not authenticated");
+            throw new InvalidOperationException("User context is not present");
         }
 
         if (user.Identity == null || !user.Identity.IsAuthenticated)

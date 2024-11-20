@@ -1,9 +1,6 @@
 ﻿using API.Middlewares;
 using Application.Restaurants.Commands.CreateRestaurantCommand;
-using Domain.Entities;
 using FluentValidation;
-using Infrastructure.Persistence;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
 

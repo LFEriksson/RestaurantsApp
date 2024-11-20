@@ -6,14 +6,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Restaurants.Commands.CreateRestaurantCommand;
 
-internal class CreateRestaurantCommandHandler(
+public class CreateRestaurantCommandHandler(
     IRestaurantsRepository restaurantsRepository,
     ILogger<CreateRestaurantCommandHandler> logger,
     IUserContext userContext) : IRequestHandler<CreateRestaurantCommand, int>
 {
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        var currentUser = userContext.GetCurentUser();
+        var currentUser = userContext.GetCurrentUser();
 
         logger.LogInformation("{UserName} [{UserID}] is creating restaurant {@restaurant}", currentUser.Email, currentUser.UserId, request);
         var mapper = new RestaurantMapper();
@@ -21,5 +21,4 @@ internal class CreateRestaurantCommandHandler(
         restaurant.OwnerId = currentUser.UserId;
         return await restaurantsRepository.AddAsync(restaurant);
     }
-
 }

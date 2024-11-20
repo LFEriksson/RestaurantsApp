@@ -13,7 +13,7 @@ public class UpdateUserDetailsCommandHandler(
 {
     public async Task Handle(UpdateUserDetailsCommand request, CancellationToken cancellationToken)
     {
-        var user = userContext.GetCurentUser();
+        var user = userContext.GetCurrentUser();
         logger.LogInformation("Updating user: {Userid}, with {@Request}", user.UserId, request);
 
         var appUser = await userStore.FindByIdAsync(user.UserId, cancellationToken);

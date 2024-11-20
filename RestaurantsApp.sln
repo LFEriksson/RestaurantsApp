@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\API\API.csproj", "{8FE444F6-8690-4B71-A6CB-C930B1D4B0E7}"
 EndProject
@@ -10,6 +10,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{3775204A-41F1-4582-8DC2-09776A01C00C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{3AE5D101-A227-4E33-AA0C-EF4035C2C60F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "src\Application.Tests\Application.Tests.csproj", "{2DE58B22-9B68-4060-831A-67F1AD95CF1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "src\Infrastructure.Tests\Infrastructure.Tests.csproj", "{5170ADC5-A0EB-4143-8723-F343381C75E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{51725C34-A43A-4BA4-9396-8AAC31C65343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +39,20 @@ Global
 		{3AE5D101-A227-4E33-AA0C-EF4035C2C60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE5D101-A227-4E33-AA0C-EF4035C2C60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE5D101-A227-4E33-AA0C-EF4035C2C60F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE58B22-9B68-4060-831A-67F1AD95CF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE58B22-9B68-4060-831A-67F1AD95CF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE58B22-9B68-4060-831A-67F1AD95CF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE58B22-9B68-4060-831A-67F1AD95CF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DE58B22-9B68-4060-831A-67F1AD95CF1F} = {51725C34-A43A-4BA4-9396-8AAC31C65343}
+		{5170ADC5-A0EB-4143-8723-F343381C75E4} = {51725C34-A43A-4BA4-9396-8AAC31C65343}
 	EndGlobalSection
 EndGlobal
