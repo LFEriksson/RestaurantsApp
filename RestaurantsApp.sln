@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{51725C34-A43A-4BA4-9396-8AAC31C65343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Tests", "src\API.Tests\API.Tests.csproj", "{B22E79CF-C597-465E-A13E-E9126563ABD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5170ADC5-A0EB-4143-8723-F343381C75E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22E79CF-C597-465E-A13E-E9126563ABD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22E79CF-C597-465E-A13E-E9126563ABD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22E79CF-C597-465E-A13E-E9126563ABD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22E79CF-C597-465E-A13E-E9126563ABD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,5 +60,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2DE58B22-9B68-4060-831A-67F1AD95CF1F} = {51725C34-A43A-4BA4-9396-8AAC31C65343}
 		{5170ADC5-A0EB-4143-8723-F343381C75E4} = {51725C34-A43A-4BA4-9396-8AAC31C65343}
+		{B22E79CF-C597-465E-A13E-E9126563ABD1} = {51725C34-A43A-4BA4-9396-8AAC31C65343}
 	EndGlobalSection
 EndGlobal
